@@ -1,9 +1,10 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
+import Multiselect from 'multiselect-react-dropdown';
 
 
 const Signup = () => {
@@ -77,6 +78,32 @@ const Signup = () => {
                         ]}
                     >
                         <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="Phone number" />
+                    </Form.Item>
+                    <Form.Item
+                        name="interests"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please pick at least one interest!',
+                        },
+                        ]}
+                    >
+                        <Multiselect
+                            isObject={false}
+                            onKeyPressFn={function noRefCheck(){}}
+                            onRemove={function noRefCheck(){}}
+                            onSearch={function noRefCheck(){}}
+                            onSelect={function noRefCheck(){}}
+                            options={[
+                                'Option 1',
+                                'Option 2',
+                                'Option 3',
+                                'Option 4',
+                                'Option 5'
+                            ]}
+                            placeholder="Select Interests"
+                            showCheckbox
+                        />
                     </Form.Item>
                     <Form.Item
                         name="password"
