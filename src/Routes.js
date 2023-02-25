@@ -5,6 +5,9 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import ResetPasswordRequest from "./pages/ResetPasswordRequest";
+import ValidateOTP from "./pages/ValidateOTP";
+import SetNewPassword from "./pages/SetNewPassword";
 // import { UserContext } from "./UserContext";
 
 const Routes = () => {
@@ -22,6 +25,12 @@ const Routes = () => {
                         <Route path="/user/dashboard" element={<Dashboard />} />
 
                         <Route path="/user/profile" element={<Profile />} /> 
+
+                        <Route path="/user/password/reset/request" element={<ResetPasswordRequest />} /> 
+
+                        <Route path="/user/password/reset/validate" element={<ValidateOTP />} /> 
+
+                        <Route path="/user/password/reset/setnew" element={<SetNewPassword />} />
                     {/* </UserContext.Provider> */}
                 </Routes2>
             </Router>

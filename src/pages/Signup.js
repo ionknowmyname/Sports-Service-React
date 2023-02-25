@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Link, useNavigate  } from "react-router-dom";
@@ -6,19 +6,42 @@ import axios from "axios";
 import { Card, Space } from 'antd';
 import Multiselect from 'multiselect-react-dropdown';
 
+const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 40,
+      },
+      sm: {
+        span: 16,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 40,
+      },
+      sm: {
+        span: 26,
+      },
+    },
+  };
 
+  
 const Signup = () => {
 
     const navigate = useNavigate();
+    
+    const [selected, setSelected] = useState([]);
+
 
     const onFinish = values => {
         console.log('Received values of form: ', values);
-        const { email, phonenumber, password } = values
+        const { email, phonenumber, password, interests } = values
 
         const data = {
             email: email,
             phonenumber: phonenumber,
-            password: password
+            password: password,
+            interests: interests
         }
 
         console.log("coming from front ", data);
@@ -46,16 +69,22 @@ const Signup = () => {
             .catch((err) => console.log(err));
     };
 
+    const addSelected = (selectedList, selectedItem) => {
+        // setSelected(e.target.value)
+    }
+
     return (
         <Space direction="vertical" size={16}>
-            <Card title="LOGIN" style={{ width: 370, marginLeft: 400, marginTop: 100 }}>
+            <Card title="REGISTER" style={{ width: 450, marginLeft: 400, marginTop: 100, textAlign: "center" }}>
                 <Form
-                name="normal_signup"
-                className="login-form"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
+                    {...formItemLayout}
+                    name="normal_signup"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                    style={{ maxWidth: 600,}}
+                    size="large"
                 >
                     <Form.Item
                         name="email"
@@ -83,7 +112,7 @@ const Signup = () => {
                         name="interests"
                         rules={[
                         {
-                            required: true,
+                            required: false,
                             message: 'Please pick at least one interest!',
                         },
                         ]}
@@ -93,7 +122,7 @@ const Signup = () => {
                             onKeyPressFn={function noRefCheck(){}}
                             onRemove={function noRefCheck(){}}
                             onSearch={function noRefCheck(){}}
-                            onSelect={function noRefCheck(){}}
+                            onSelect={addSelected}
                             options={[
                                 'Option 1',
                                 'Option 2',

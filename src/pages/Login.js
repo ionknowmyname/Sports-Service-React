@@ -5,6 +5,26 @@ import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
 
+const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 40,
+      },
+      sm: {
+        span: 16,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 40,
+      },
+      sm: {
+        span: 26,
+      },
+    },
+  };
+
+
 const Login = () => {
 
     const navigate = useNavigate();
@@ -41,17 +61,22 @@ const Login = () => {
             })
             .catch((err) => console.log(err));
     };
+    
+    const toResetPassword = () => {
+        navigate('/user/password/reset/request')  // , { state: { id: 1, name: 'test' } }
+    }
 
     return (
         <Space direction="vertical" size={16}>
-            <Card title="LOGIN" style={{ width: 370, marginLeft: 400, marginTop: 100 }}>
+            <Card title="LOGIN" style={{ width: 450, marginLeft: 400, marginTop: 100, textAlign: "center" }}>
                 <Form
+                    {...formItemLayout}
                     name="normal_login"
-                    className="login-form"
                     initialValues={{
                         remember: true,
                     }}
                     onFinish={onFinish}
+                    size="large"
                 >
                     <Form.Item
                         name="username"
@@ -84,7 +109,11 @@ const Login = () => {
                         <Checkbox>Remember me</Checkbox>
                         </Form.Item>
 
-                        <a className="login-form-forgot" href="/user/forgotPassword">
+                        {/* <a className="login-form-forgot" href="/user/password/reset/request">
+                            Forgot password
+                        </a> */}
+
+                        <a className="login-form-forgot" onClick={() => { toResetPassword() }}>
                             Forgot password
                         </a>
                     </Form.Item>
@@ -95,9 +124,8 @@ const Login = () => {
                         </Button>
                     </Form.Item>
                     <Form.Item>
-                        <a className="login-form-forgot" href="/user/signup">
-                            Sign Up
-                        </a>
+                        <a className="login-form-forgot" href="/user/signup">Sign Up</a>
+
                         {/* <Link to="/user/signup"> Sign Up</Link> */}
                     </Form.Item>
                 </Form>
