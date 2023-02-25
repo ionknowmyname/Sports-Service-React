@@ -5,6 +5,9 @@ import { useNavigate, useLocation  } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
 
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
 
 const formItemLayout = {
     labelCol: {
@@ -37,6 +40,13 @@ const SetNewPassword = () => {
 
         const emailFromState = location.state.email;
 
+        if(password !== confirmPassword) {
+            toast.error("Passwords do not match", {
+                position: toast.POSITION.TOP_CENTER
+            });
+            return;
+        }
+
         const data = {
             email: emailFromState,
             newPassword: password
@@ -45,11 +55,15 @@ const SetNewPassword = () => {
         console.log("coming from front ", data);
 
         axios
-            .post("http://localhost:8000/api/v1/users/password/reset/new", data)
+            .put("http://localhost:8000/api/v1/users/password/reset/new", data)
             .then((res) => {
                 console.log("for response posted from backend: ", res); // consoles in the node terminal
                 if (res.status === 200) {
-                    // time delay to alert succesfully created new password
+
+                    toast.success("Successfully reset your password", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                      
                     navigate('/user/login')
                 } else {
                     // alert("");
@@ -110,6 +124,7 @@ const SetNewPassword = () => {
                 </Form>
             </Card>
         </Space>
+        
     );
 }
 

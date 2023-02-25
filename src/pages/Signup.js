@@ -5,6 +5,7 @@ import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
 import Multiselect from 'multiselect-react-dropdown';
+import { toast } from 'react-toastify';
 
 const formItemLayout = {
     labelCol: {
@@ -52,18 +53,20 @@ const Signup = () => {
                 console.log("for response posted from backend: ", res); 
 
                 if (res.status === 200) {
-                    // localStorage.setItem("token", 'Bearer ' + res.data.token);
-                    localStorage.setItem("token", res.data.token);
+                
+                    toast.success("Successfully Signed Up", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+
                     // window.location.href = "/dashboard";
 
                     navigate("/user/login");
                 } else {
-                    alert("Error signing up, Try again");
+                    
+                    toast.error("Error Signinig up, Try again", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
                     return;
-
-                    // clearing out form
-                    // setLogin("");
-                    // setPassword("");
                 }
             })
             .catch((err) => console.log(err));

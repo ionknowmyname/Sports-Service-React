@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate  } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
+import { toast } from 'react-toastify';
 
 const formItemLayout = {
     labelCol: {
@@ -47,8 +48,10 @@ const ResetPasswordRequest = () => {
 
                     navigate('/user/password/reset/validate', { state: { email: email } })
                 } else {
-                    // alert("");
-                    // email didn't send
+                    toast.error("Email failed to send", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                    return;
                 }
             })
             .catch((err) => console.log(err));

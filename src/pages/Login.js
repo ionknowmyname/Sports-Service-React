@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
+import { toast } from 'react-toastify';
 
 const formItemLayout = {
     labelCol: {
@@ -48,15 +49,18 @@ const Login = () => {
                 if (res.status === 200) {
                     // localStorage.setItem("token", 'Bearer ' + res.data.token);
                     localStorage.setItem("token", res.data.token);
-                    // window.location.href = "/dashboard";
+
+                    toast.success("Successfully Logged In", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
 
                     navigate("/user/dashboard");
                 } else {
-                    alert("Wrong Login/Password");
 
-                    // clearing out form
-                    // setLogin("");
-                    // setPassword("");
+                    toast.error("Wrong Login/Password", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                    return;
                 }
             })
             .catch((err) => console.log(err));

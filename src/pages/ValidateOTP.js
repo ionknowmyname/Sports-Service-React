@@ -4,6 +4,7 @@ import { CodeOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card, Space } from 'antd';
+import { toast } from 'react-toastify';
 
 
 const formItemLayout = {
@@ -49,10 +50,18 @@ const ValidateOTP = () => {
             .then((res) => {
                 console.log("for response posted from backend: ", res); // consoles in the node terminal
                 if (res.status === 200) {
+
+                    toast.success("Successfully Validated OTP", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
                     
                     navigate('/user/password/reset/setnew', { state: { email: emailFromState } })
                 } else {
-                    alert("Error validating OTP, Try again");
+                    
+                    toast.error("Error validating OTP, Try again", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+                    return;
                 }
             })
             .catch((err) => console.log(err));
