@@ -46,6 +46,10 @@ const ResetPasswordRequest = () => {
                 console.log("for response posted from backend: ", res); // consoles in the node terminal
                 if (res.status === 200) {
 
+                    toast.success("Further instructions sent to your email", {
+                        position: toast.POSITION.TOP_CENTER
+                    });
+
                     navigate('/user/password/reset/validate', { state: { email: email } })
                 } else {
                     toast.error("Email failed to send", {
@@ -54,7 +58,14 @@ const ResetPasswordRequest = () => {
                     return;
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err)
+
+                toast.error("Email failed to send", {
+                    position: toast.POSITION.TOP_CENTER
+                });
+                return;
+            });
     };
 
     const backToLogin = () => {

@@ -48,13 +48,16 @@ const Login = () => {
                 console.log("for response posted from backend: ", res); // consoles in the node terminal
                 if (res.status === 200) {
                     // localStorage.setItem("token", 'Bearer ' + res.data.token);
-                    localStorage.setItem("token", res.data.token);
+                    localStorage.setItem("token", res.data.data.jwt);
+
+                    // also set user coz no state management
+                    localStorage.setItem("user", JSON.stringify(res.data.data.user));   
 
                     toast.success("Successfully Logged In", {
                         position: toast.POSITION.TOP_CENTER
                     });
 
-                    navigate("/user/dashboard");
+                    navigate("/user/dashboard", { state: { user: res.data.data.user } });  // send whole user in state to dashboard
                 } else {
 
                     toast.error("Wrong Login/Password", {
@@ -63,7 +66,14 @@ const Login = () => {
                     return;
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log("Error from Axios --> " + err);
+
+                toast.error("Wrong Login/Password", {
+                    position: toast.POSITION.TOP_CENTER
+                });
+                return;
+            });
     };
     
     const toResetPassword = () => {
