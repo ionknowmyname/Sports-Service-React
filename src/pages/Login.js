@@ -82,7 +82,17 @@ const Login = () => {
 
     return (
         <Space direction="vertical" size={16}>
-            <Card title="LOGIN" style={{ width: 450, marginLeft: 400, marginTop: 100, textAlign: "center" }}>
+            <Card title="LOGIN" 
+                style={{ 
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                    width: "100vw",
+                    textAlign: "center",
+                }}
+            >
                 <Form
                     {...formItemLayout}
                     name="normal_login"
@@ -90,6 +100,10 @@ const Login = () => {
                         remember: true,
                     }}
                     onFinish={onFinish}
+                    style={{
+                        maxWidth: "30rem",
+                        minWidth: "22rem",
+                    }}
                     size="large"
                 >
                     <Form.Item

@@ -1,23 +1,92 @@
-body {
+*,
+*::before,
+*::after {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Utility Components */
+:root {
+  font-size: 62.5%;
+
+  /* Colors */
+  --primary-color: #014d4e;
+  --secondary-color: #1808ffd6;
+  --secondary-color-m: #ff94088e;
+  --tertiary-color: #017374;
+  --tertiary-color-m: #01727498;
 }
 
-.login-form {
-  max-width: 300px;
+body > div {
+  font-family: "Baloo Tamma 2", cursive;
+  line-height: 1.8;
+  display: flex;
 }
-.login-form-forgot {
-  float: right;
+
+li {
+  list-style: none;
 }
-.login-form-button {
+
+a:link,
+a:visited {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+/* For Profile */
+
+.profile_section {
+  width: 100vw;
+}
+
+.site-input-group-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile_avatar {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+.profile_inputs {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
+  margin-right: 5px;
 }
+
+.profile_userName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.proflie_userName_input {
+  display: flex;
+  flex-wrap: wrap;
+}
+.proflie_userName_input .userName_label {
+  padding-right: 5px;
+  font-size: 1.8rem;
+}
+.proflie_userName_input .userName {
+  font-size: 1.8rem;
+  font-weight: 200;
+}
+
+.profile_userNamebutton {
+  width: 100%;
+  margin: 5px;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+/* code {
+  font-family: "Baloo Tamma 2", cursive;
+  font-family: "Indie Flower", cursive;
+} */

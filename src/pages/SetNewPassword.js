@@ -75,7 +75,17 @@ const SetNewPassword = () => {
 
     return (
         <Space direction="vertical" size={16}>
-            <Card title="Enter your New Password" style={{ width: 450, marginLeft: 400, marginTop: 100, textAlign: "center" }}>
+            <Card title="Enter your New Password" 
+                style={{ 
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                    width: "100vw",
+                    textAlign: "center", 
+                }}
+            >
                 <Form
                     {...formItemLayout}
                     name="reset_password"
@@ -83,6 +93,10 @@ const SetNewPassword = () => {
                         remember: true,
                     }}
                     onFinish={onFinish}
+                    style={{
+                        maxWidth: "30rem",
+                        minWidth: "22rem",
+                    }}  
                     size="large"
                 >
                     <Form.Item

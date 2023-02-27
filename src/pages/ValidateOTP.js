@@ -70,7 +70,17 @@ const ValidateOTP = () => {
 
     return (
         <Space direction="vertical" size={16}>
-            <Card title="Enter your OTP" style={{ width: 300, marginLeft: 400, marginTop: 100, textAlign: "center" }}>
+            <Card title="Enter your OTP" 
+                style={{ 
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                    width: "100vw",
+                    textAlign: "center",
+                }}
+            >
                 <Form
                     {...formItemLayout}
                     name="validate_otp"
@@ -78,6 +88,10 @@ const ValidateOTP = () => {
                         remember: true,
                     }}
                     onFinish={onFinish}
+                    style={{
+                        maxWidth: "30rem",
+                        minWidth: "22rem",
+                    }}
                     size="large"
                 >
                     <Form.Item

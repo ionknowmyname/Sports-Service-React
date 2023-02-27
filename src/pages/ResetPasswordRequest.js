@@ -74,7 +74,17 @@ const ResetPasswordRequest = () => {
 
     return (
         <Space direction="vertical" size={16}>
-            <Card title="Enter your Registered Email" style={{ width: 450, marginLeft: 400, marginTop: 100, textAlign: "center" }}>
+            <Card title="Enter your Registered Email" 
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                    width: "100vw",
+                    textAlign: "center", 
+                }}
+            >
                 <Form
                     {...formItemLayout}
                     name="reset_password"
@@ -82,6 +92,10 @@ const ResetPasswordRequest = () => {
                         remember: true,
                     }}
                     onFinish={onFinish}
+                    style={{
+                        maxWidth: "30rem",
+                        minWidth: "22rem",
+                    }}
                     size="large"
                 >
                     <Form.Item
