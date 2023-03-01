@@ -19,3 +19,4 @@
 - Best for UX, automatically log the user in after confirming password reset successful
 - Decouple pages into more reusable components; would help a lot in Profile
 - Add Tests
+- Also don't save jwt in local storage, use httpOnly cookie
